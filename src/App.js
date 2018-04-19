@@ -19,7 +19,7 @@ class App extends Component {
   }
 
   addToDo(event) {
-    const newList = ['Hello', this.state.value];
+    const newList = [...this.state.list, this.state.value];
     const newEntry = this.currentEntry
     this.setState({list: newList});
   }

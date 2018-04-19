@@ -11,6 +11,7 @@ class App extends Component {
     this.state = {
       list :['Hello', 'Whats going on'],
       currentEntry : '',
+      value: '',
     }
 
     this.addToDo = this.addToDo.bind(this)
@@ -18,22 +19,24 @@ class App extends Component {
   }
 
   addToDo(event) {
-    const newList = ['Hello', this.currentEntry];
+    const newList = ['Hello', this.state.value];
     const newEntry = this.currentEntry
     this.setState({list: newList});
   }
 
   handleChange(event) {
     console.log('Hello')
-    this.setState({ currentEntry: 'HELLO'})
+    this.setState({ value: event.target.value})
+    console.log(event.target.value)
   }
 
 
   render() {
+
     return (
       <div className="App">
         <TextEntry
-          value = ''
+          value = {this.state.value}
           onChange ={this.handleChange}
         />
         <Submit 
@@ -53,7 +56,7 @@ class TextEntry extends Component {
       <div className="textbox"> 
         <input 
           type="text"
-          value= {this.currentEntry}
+          value= {this.props.currentEntry}
           onChange = {this.props.onChange} />
       </div>
     )
@@ -76,6 +79,7 @@ class Submit extends Component {
     return (
       <button 
         onClick={() => this.props.onClick()}
+
       > 
         {this.props.name}
       </button>

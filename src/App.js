@@ -18,10 +18,12 @@ class App extends Component {
     this.handleChange = this.handleChange.bind(this)
   }
 
+  
   addToDo(event) {
     const newList = [...this.state.list, this.state.value];
     const newEntry = this.currentEntry
     this.setState({list: newList});
+    this.setState({value: ''})
   }
 
   handleChange(event) {
@@ -56,7 +58,7 @@ class TextEntry extends Component {
       <div className="textbox"> 
         <input 
           type="text"
-          value= {this.props.currentEntry}
+          value= {this.props.value}
           onChange = {this.props.onChange} />
       </div>
     )
@@ -67,9 +69,9 @@ class TextEntry extends Component {
 class List extends Component {
   render() {
     return (
-    <div>  
-      {this.props.list.map(item => <p key={item.objectID}> {item} </p>)} 
-    </div>  
+      <div>  
+        {this.props.list.map(item => <p key={item.objectID}> {item} </p>)} 
+      </div>  
     )
   }
 }

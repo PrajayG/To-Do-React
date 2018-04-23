@@ -33,7 +33,10 @@ class App extends Component {
 
   deleteEntry(item) {
     console.log(item)
+    const isItem = placement => placement !== item;
+    const updatedList = this.state.list.filter(isItem);
 
+    this.setState({ list: updatedList})
   }
 
   render() {

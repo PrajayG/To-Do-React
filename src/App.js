@@ -10,7 +10,9 @@ class App extends Component {
     this.state = {
       list: ["Hello", "Whats going on"],
       currentEntry: "",
-      value: ""
+      value: "",
+      deletedEntries: []
+
     };
 
     this.addToDo = this.addToDo.bind(this);
@@ -36,21 +38,24 @@ class App extends Component {
     const isItem = placement => placement !== item;
     const updatedList = this.state.list.filter(isItem);
 
-    this.setState({ list: updatedList})
+    this.setState({ list: updatedList, deletedEntries: [...this.state.deletedEntries, item] })
+
   }
 
   render() {
     return (
       <div className="App container">
         <TextEntry value={this.state.value} onChange={this.handleChange} />
-        <Submit name="Hello" onClick={this.addToDo} />
+        <Submit name="Add To-Do" onClick={this.addToDo} />
         <List list={this.state.list} onClick={this.deleteEntry} />
+        <h3> Completed Items</h3>
+        <DeletedItems list={this.state.deletedEntries} />
       </div>
     );
   }
 }
 
-class TextEntry extends Component {
+class TextEntry extends Component { 
   render() {
     return (
       <div className="textbox">
@@ -74,12 +79,24 @@ class List extends Component {
               <p key={item.objectID}> {item} </p> 
             </div>
             <div className="one-half column">
-              <button onClick={() => this.props.onClick(item)} >Delete</button>
+              <button onClick={() => this.props.onClick(item)} >Completed</button>
             </div>
           </div>
         ))}
       </div>
     );
+  }
+}
+
+class DeletedItems extends Component {
+  render() {
+    return (
+      <div>
+        {this.props.list.map(item =>
+          <p className="deleted-items" key ={item}> {item}</p>
+        )}
+      </div>
+    )
   }
 }
 

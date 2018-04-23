@@ -561,3 +561,7 @@ there.
 .submitbutton {
   display: inline;
 }
+
+.deleted-items {
+  text-decoration: line-through;
+}

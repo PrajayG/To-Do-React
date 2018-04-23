@@ -37,15 +37,22 @@ class App extends Component {
 
     return (
       <div className="App">
-        <TextEntry
-          value = {this.state.value}
-          onChange ={this.handleChange}
-        />
-        <Submit 
-          name='Hello'
-          onClick={this.addToDo}
-        />
-        <List list={this.state.list}/>
+        <div className="container">
+          <div className="to-do-bar">
+            <TextEntry
+              className="TextEntry"
+              value = {this.state.value}
+              onChange ={this.handleChange}
+            />
+            <Submit 
+              className="SubmitButton"
+              name='Hello'
+              onClick={this.addToDo}
+            />
+          </div>
+            <List list={this.state.list}/>
+         
+        </div>
       </div>
     );
   }
@@ -70,7 +77,8 @@ class List extends Component {
   render() {
     return (
       <div>  
-        {this.props.list.map(item => <p key={item.objectID}> {item} </p>)} 
+        {this.props.list.map(item => <p key={item.objectID}> {item}  <Delete /></p>)} 
+        
       </div>  
     )
   }
@@ -79,12 +87,25 @@ class List extends Component {
 class Submit extends Component {
   render() {
     return (
-      <button 
-        onClick={() => this.props.onClick()}
+      <div className="submitbutton">
+        <button 
+          onClick={() => this.props.onClick()}
+        > 
+          {this.props.name}
+        </button>
+      </div>
+    )
+  }
+}
 
-      > 
-        {this.props.name}
-      </button>
+class Delete extends Component {
+  render() {
+    return (
+      <div className="deletebutton">
+        <button>
+          Delete
+        </button>
+      </div>
     )
   }
 }

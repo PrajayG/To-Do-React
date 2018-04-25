@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 
+// **TO DO**
+// Add Pomodoro Timer
+// 
+
 import logo from "./logo.svg";
 import "./App.css";
 
@@ -11,13 +15,14 @@ class App extends Component {
       list: ["Hello", "Whats going on"],
       currentEntry: "",
       value: "",
-      deletedEntries: []
-
+      deletedEntries: [],
+      timer: 'Hello',
     };
 
     this.addToDo = this.addToDo.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.deleteEntry = this.deleteEntry.bind(this);
+
   }
 
   addToDo(event) {
@@ -37,10 +42,11 @@ class App extends Component {
     console.log(item)
     const isItem = placement => placement !== item;
     const updatedList = this.state.list.filter(isItem);
-
     this.setState({ list: updatedList, deletedEntries: [...this.state.deletedEntries, item] })
-
   }
+
+
+
 
   render() {
     return (
@@ -50,6 +56,7 @@ class App extends Component {
         <List list={this.state.list} onClick={this.deleteEntry} />
         <h3> Completed Items</h3>
         <DeletedItems list={this.state.deletedEntries} />
+        <Pomodoro time={this.state.timer} startTimer={this.startTimer} />
       </div>
     );
   }
@@ -110,8 +117,45 @@ class Submit extends Component {
   }
 }
 
+class Pomodoro extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {date: 500};
+  }
+
+  componentDidMount() {
+    this.timerID = setInterval(
+      () => this.tick(),
+      1000
+    );
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timerID);
+  }
+
+  tick() {
+    this.setState({
+      date: this.state.date - 1
+    });
+  }
+
+  formatNumber(n) {
+    var minutes = parseInt(n / 60, 10)
+    var seconds = parseInt(n % 60, 10);
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+    return minutes + ":" + seconds;
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>Hello, world!</h1>
+        <h2>It is {this.formatNumber(this.state.date)}.</h2>
+      </div>
+    );
+  }
+}
 export default App;
-
-// Component lists //
-
-// to-do-list

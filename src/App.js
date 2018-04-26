@@ -56,7 +56,7 @@ class App extends Component {
         <List list={this.state.list} onClick={this.deleteEntry} />
         <h3> Completed Items</h3>
         <DeletedItems list={this.state.deletedEntries} />
-        <Pomodoro time={this.state.timer} startTimer={this.startTimer} />
+        <Pomodoro />
       </div>
     );
   }
@@ -121,14 +121,25 @@ class Pomodoro extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {date: 500};
+    this.state = {
+      date: 1500,
+      timerStarted: false,
+    };
   }
 
-  componentDidMount() {
-    this.timerID = setInterval(
-      () => this.tick(),
-      1000
-    );
+  startTimer() {
+    console.log('hello')
+    console.log(this.state.timerStarted)
+    if (this.state.timerStarted == false) {
+      this.setState({
+        timerStarted: true
+      })
+      console.log(this.state.timerStarted)
+      this.timerID = setInterval(
+        () => this.tick(),
+        1000
+      );
+    }
   }
 
   componentWillUnmount() {
@@ -152,10 +163,13 @@ class Pomodoro extends Component {
   render() {
     return (
       <div>
-        <h1>Hello, world!</h1>
-        <h2>It is {this.formatNumber(this.state.date)}.</h2>
+        <h1>Timer</h1>
+        <h2>You have {this.formatNumber(this.state.date)} left.</h2>
+        <button onClick={() => this.startTimer()}> Start </button> 
+        {/* Note that the above is passed as a function, this ensures that it doesn't 
+        continuously call */}
       </div>
-    );
+    )
   }
 }
 export default App;

@@ -146,6 +146,13 @@ class Pomodoro extends Component {
     clearInterval(this.timerID);
   }
 
+  stopTimer() {
+    clearInterval(this.timerID);
+    this.setState({
+      timerStarted: false
+    })
+  }
+
   tick() {
     this.setState({
       date: this.state.date - 1
@@ -160,16 +167,55 @@ class Pomodoro extends Component {
     return minutes + ":" + seconds;
   }
 
+  setTime(n) {
+    clearInterval(this.timerID);
+    this.setState({
+      date: n
+    })
+  }
+
   render() {
     return (
-      <div>
-        <h1>Timer</h1>
-        <h2>You have {this.formatNumber(this.state.date)} left.</h2>
-        <button onClick={() => this.startTimer()}> Start </button> 
-        {/* Note that the above is passed as a function, this ensures that it doesn't 
-        continuously call */}
+    <div className="pomodoro">  
+      <div className="container">
+        <div className="row">
+          <div className="six columns">  
+            <h1 className="pomo-timer"> {this.formatNumber(this.state.date)} </h1>
+          </div>
+
+          <div className="six columns">
+            <ButtonTime time="5 Minutes" onClick={() => this.setTime(300)} ></ButtonTime>
+            <ButtonTime time="25 Minutes" onClick={() => this.setTime(1500)}> </ButtonTime>
+            
+          </div>
+        </div>
+        <div className="row">
+          <div className="six columns">
+            <button onClick={() => this.startTimer()}> Start </button> 
+            <button onClick={() => this.stopTimer()}> Stop </button>
+          </div>
+          <div className="six columns">
+            <ButtonTime time="60 MInutes" onClick={() => this.setTime(3600)}> </ButtonTime>
+          </div>
+        </div>
+          {/* Note that the above is passed as a function, this ensures that it doesn't 
+          continuously call */}
       </div>
+    </div>
     )
   }
 }
+
+
+class ButtonTime extends Component {
+
+  render() {
+    return (
+      <button onClick={() => this.props.onClick()} > {this.props.time} </button>
+    )
+  }
+
+}
+
 export default App;
+

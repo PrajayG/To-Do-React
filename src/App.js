@@ -51,14 +51,29 @@ class App extends Component {
   render() {
     return (
       <div className="App container">
-        <TextEntry value={this.state.value} onChange={this.handleChange} />
-        <Submit name="Add To-Do" onClick={this.addToDo} />
-        <List list={this.state.list} onClick={this.deleteEntry} />
-        <h3> Completed Items</h3>
-        <DeletedItems list={this.state.deletedEntries} />
-        <Pomodoro />
+        <div className="six columns">
+          <Header/>
+          <TextEntry value={this.state.value} onChange={this.handleChange} />
+          <Submit name="Add To-Do" onClick={this.addToDo} />
+          <List list={this.state.list} onClick={this.deleteEntry} />
+          <h3> Completed Items</h3>
+          <DeletedItems list={this.state.deletedEntries} />
+        </div>
+        <div className="six columns">
+          <Pomodoro />
+        </div>    
       </div>
     );
+  }
+}
+
+class Header extends Component {
+  render() {
+    return (
+    <head>
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous"/>
+    </head>
+  )
   }
 }
 
@@ -167,10 +182,19 @@ class Pomodoro extends Component {
     return minutes + ":" + seconds;
   }
 
+  pauseTimer() {
+    this.setState({
+      date: this.state.date,
+      timerStarted: false
+    })
+      clearInterval(this.timerID)
+  }
+
   setTime(n) {
     clearInterval(this.timerID);
     this.setState({
-      date: n
+      date: n,
+      timerStarted: false
     })
   }
 
@@ -191,8 +215,9 @@ class Pomodoro extends Component {
         </div>
         <div className="row">
           <div className="six columns">
-            <button onClick={() => this.startTimer()}> Start </button> 
+            <button onClick={() => this.startTimer()}> <i class="fas fa-camera-retro"></i> </button> 
             <button onClick={() => this.stopTimer()}> Stop </button>
+            <button onClick={() => this.pauseTimer()}> Pause </button>
           </div>
           <div className="six columns">
             <ButtonTime time="60 MInutes" onClick={() => this.setTime(3600)}> </ButtonTime>

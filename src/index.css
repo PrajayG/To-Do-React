@@ -584,3 +584,8 @@ button {
 .pomo-timer {
   padding-top: 30px;
 }
+
+.to-do {
+  border: 1px solid #ccc;
+  box-shadow: 2px 3px 5px 2px #ccc;
+}

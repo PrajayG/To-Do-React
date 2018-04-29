@@ -7,8 +7,8 @@ import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import Pomodoro from './pomodoro';
-
-
+import QuoteGenerator from './api';
+import Weather from './weather';
 
 class App extends Component {
   constructor(props) {
@@ -54,6 +54,7 @@ class App extends Component {
   render() {
     return (
       <div className="App container">
+      <div className="row">
         <div className="six columns to-do">
           <Header/>
           <TextEntry value={this.state.value} onChange={this.handleChange} />
@@ -64,7 +65,20 @@ class App extends Component {
         </div>
         <div className="six columns">
           <Pomodoro />
-        </div>    
+          
+          
+        </div>
+        </div>
+        <div className="row">
+          <div className="quote">
+            <QuoteGenerator />    
+          </div>
+        </div>
+        <div className="row">
+          <div className="weather">
+            <Weather />
+          </div>  
+        </div>
       </div>
     );
   }

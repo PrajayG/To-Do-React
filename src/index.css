@@ -23,7 +23,6 @@
 - Clearing
 - Media Queries
 */
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
 
 
 
@@ -575,7 +574,7 @@ button {
 
 .pomodoro {
   margin: 10px;
-  padding: 20px;
+  padding: 10px;
   border: 1px solid #ccc;
   border-radius: 2px;
   box-shadow: 2px 3px 5px 2px #ccc;
@@ -588,4 +587,15 @@ button {
 .to-do {
   border: 1px solid #ccc;
   box-shadow: 2px 3px 5px 2px #ccc;
+}
+
+.quote, .weather {
+  border: 1px solid #ccc;
+  box-shadow: 2px 3px 5px 2px #ccc;
+  margin: 10px;
+  padding: 20px;
+}
+
+.six {
+  height: 100%
 }

@@ -27,15 +27,16 @@ class Weather extends React.Component {
         const place = this.state.value
         fetch(apicall + place)
         .then(response => {
-
             return response.json()
         })
         .then(myId => {
             if (myId[0] == null) {
                 this.setState({ currentWeather: 'Sorry could not find a location'})
+                
             }
             else {
                 return myId[0]['woeid']
+                
             }
         })
         .then(Id => {
@@ -43,9 +44,14 @@ class Weather extends React.Component {
                 .then(response => {
                     return response.json()
                 })
+
                 .then(results => {
                     const result = results['consolidated_weather'][0]['weather_state_name']
                     this.setState({ currentWeather: result })
+                    
+                })
+                .catch( err => {
+                    this.setState({ currentWeather: 'Sorry could not find a location'})
                 })
         }
         )

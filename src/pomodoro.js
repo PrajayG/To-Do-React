@@ -72,24 +72,22 @@ class Pomodoro extends React.Component {
       <div className="pomodoro">  
         <div className="container">
           <div className="row">
-            <div className="six columns">  
+            <div className=" column">  
               <h1 className="pomo-timer"> {this.formatNumber(this.state.date)} </h1>
             </div>
   
-            <div className="six columns">
+            <div className="column timer">
               <ButtonTime time="5 Minutes" onClick={() => this.setTime(300)} ></ButtonTime>
               <ButtonTime time="25 Minutes" onClick={() => this.setTime(1500)}> </ButtonTime>
+              <ButtonTime time="60 MInutes" onClick={() => this.setTime(3600)}> </ButtonTime>
               
             </div>
           </div>
           <div className="row">
-            <div className="six columns">
+            <div className="column column-50">
               <button onClick={() => this.startTimer()}> <i class="fas fa-play"></i> </button> 
               <button onClick={() => this.stopTimer()}> <i class="fas fa-stop"> </i></button>
               <button onClick={() => this.pauseTimer()}> <i class="fas fa-pause"></i> </button>
-            </div>
-            <div className="six columns">
-              <ButtonTime time="60 MInutes" onClick={() => this.setTime(3600)}> </ButtonTime>
             </div>
           </div>
             {/* Note that the above is passed as a function, this ensures that it doesn't 

@@ -7,8 +7,9 @@ import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import Pomodoro from './pomodoro';
-import QuoteGenerator from './api';
 import Weather from './weather';
+import QuoteGenerator from "./api";
+
 
 class App extends Component {
   constructor(props) {
@@ -25,6 +26,7 @@ class App extends Component {
     this.addToDo = this.addToDo.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.deleteEntry = this.deleteEntry.bind(this);
+    this.undoAdd = this.undoAdd.bind(this)
 
   }
 
@@ -45,40 +47,34 @@ class App extends Component {
     console.log(item)
     const isItem = placement => placement !== item;
     const updatedList = this.state.list.filter(isItem);
-    this.setState({ list: updatedList, deletedEntries: [...this.state.deletedEntries, item] })
+    this.setState({ list: updatedList, deletedEntries:[...this.state.deletedEntries, item]})
   }
 
-
+  undoAdd(item) {
+    console.log(item)
+    const isItem = placement => placement !== item;
+    const newList = this.state.deletedEntries.filter(isItem)
+    this.setState({ list: [...this.state.list, item], deletedEntries: newList})
+  }
 
 
   render() {
     return (
       <div className="App container">
-      <div className="row">
-        <div className="six columns to-do">
+        <div className="column">
           <Header/>
           <TextEntry value={this.state.value} onChange={this.handleChange} />
           <Submit name="Add To-Do" onClick={this.addToDo} />
           <List list={this.state.list} onClick={this.deleteEntry} />
           <h3> Completed Items</h3>
-          <DeletedItems list={this.state.deletedEntries} />
+          <DeletedItems list={this.state.deletedEntries} function={this.undoAdd} />
         </div>
-        <div className="six columns">
+        <div className="column">
           <Pomodoro />
+          <QuoteGenerator />
+          <Weather />
           
-          
-        </div>
-        </div>
-        <div className="row">
-          <div className="quote">
-            <QuoteGenerator />    
-          </div>
-        </div>
-        <div className="row">
-          <div className="weather">
-            <Weather />
-          </div>  
-        </div>
+        </div>    
       </div>
     );
   }
@@ -114,10 +110,10 @@ class List extends Component {
       <div>
         {this.props.list.map(item => (
           <div className="row">
-            <div className="one-half column">
+            <div className="column to-do-item">
               <p key={item.objectID}> {item} </p> 
             </div>
-            <div className="one-half column">
+            <div className="column">
               <button onClick={() => this.props.onClick(item)} >Completed</button>
             </div>
           </div>
@@ -132,7 +128,7 @@ class DeletedItems extends Component {
     return (
       <div>
         {this.props.list.map(item =>
-          <p className="deleted-items" key ={item}> {item}</p>
+          <p className="deleted-items" key ={item}> {item} - COMPLETED <button onClick ={() => this.props.function(item)}>Un-Do</button></p>
         )}
       </div>
     )

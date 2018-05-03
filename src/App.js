@@ -9,7 +9,7 @@ import "./App.css";
 import Pomodoro from './pomodoro';
 import Weather from './weather';
 import QuoteGenerator from "./api";
-
+import HackerNews from "./hackernews";
 
 class App extends Component {
   constructor(props) {
@@ -73,6 +73,7 @@ class App extends Component {
           <Pomodoro />
           <QuoteGenerator />
           <Weather />
+          <HackerNews />
           
         </div>    
       </div>

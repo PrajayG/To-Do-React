@@ -15,12 +15,13 @@ class HackerNews extends React.Component {
             pagehits: DEFAULT_HPP
         }
     }
-
+s
     componentDidMount() {
         let newresults = [];
         console.log('https://hn.algolia.com/api/v1/search?tags=front_page&hitsPerPage=10')
-        fetch('${PATH_BASE}${DEFAULT_HPP}')
+        fetch(`${PATH_BASE}${DEFAULT_HPP}`)
         .then(response => {
+            console.log(response)
             return response.json()
         })
         .then(myJson => {

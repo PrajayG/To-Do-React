@@ -61,16 +61,19 @@ class App extends Component {
   render() {
     return (
       <div className="App container">
-        <div className="column">
+        <div className="top-container">
           <Header/>
-          <TextEntry value={this.state.value} onChange={this.handleChange} />
-          <Submit name="Add To-Do" onClick={this.addToDo} />
-          <List list={this.state.list} onClick={this.deleteEntry} />
-          <h3> Completed Items</h3>
+          <div className="to-do-input">
+            <TextEntry value={this.state.value} onChange={this.handleChange} />
+            <Submit name="Add To-Do" onClick={this.addToDo} />
+            <List list={this.state.list} onClick={this.deleteEntry} />
+          </div>
+          <Pomodoro />
+          
           <DeletedItems list={this.state.deletedEntries} function={this.undoAdd} />
         </div>
         <div className="column">
-          <Pomodoro />
+          
           <QuoteGenerator />
           <Weather />
           <HackerNews />
@@ -112,11 +115,9 @@ class List extends Component {
         {this.props.list.map(item => (
           <div className="row">
             <div className="column to-do-item">
-              <p key={item.objectID}> {item} </p> 
+              <p key={item.objectID}> {item} </p> <button onClick={() => this.props.onClick(item)} >Completed</button>
             </div>
-            <div className="column">
-              <button onClick={() => this.props.onClick(item)} >Completed</button>
-            </div>
+
           </div>
         ))}
       </div>
@@ -127,7 +128,8 @@ class List extends Component {
 class DeletedItems extends Component {
   render() {
     return (
-      <div>
+      <div className="deleted-items">
+        <h1>Deleted Items</h1> 
         {this.props.list.map(item =>
           <p className="deleted-items" key ={item}> {item} - COMPLETED <button onClick ={() => this.props.function(item)}>Un-Do</button></p>
         )}

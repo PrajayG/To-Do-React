@@ -36,9 +36,6 @@
 
 .deleted-items {
   padding:5px;
-  border: 1px solid #ccc;
-  border-radius: 2px;
-  box-shadow: 2px 3px 5px 2px #ccc;
 
 }
 
@@ -49,9 +46,7 @@ button {
 .pomodoro {
   margin: 0px 10px;
   padding: 0px 10px;
-  border: 1px solid #ccc;
-  border-radius: 2px;
-  box-shadow: 2px 3px 5px 2px #ccc;
+
 }
 
 .pomo-timer {
@@ -59,15 +54,17 @@ button {
 }
 
 .to-do {
-  border: 1px solid #ccc;
-  box-shadow: 2px 3px 5px 2px #ccc;
+
 }
 
-.quote, .weather {
-  border: 1px solid #ccc;
-  box-shadow: 2px 3px 5px 2px #ccc;
-  margin: 10px;
+.quote{
+
+  margin-top: 40px;
   padding: 20px;
+}
+
+.weather {
+  margin-bottom: 30px;
 }
 
 .six {
@@ -80,4 +77,21 @@ button {
 
 .timer {
   margin-top: 50px;
+}
+
+.fas {
+  padding: 10px;
+}
+
+button {
+  padding: 5px 10px;
+}
+
+.timer-button {
+
+  border-radius: 10px;
+}
+
+.hacker-news {
+  margin: 0 auto;
 }

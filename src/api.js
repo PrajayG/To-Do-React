@@ -35,7 +35,7 @@ class QuoteGenerator extends React.Component {
 
     render() {
         return(
-        <div> 
+        <div className="quote"> 
             <h3> Design quote of the day </h3>   
             <h4><span>"{this.state.quote}" - </span>
             <span> {this.state.author}</span></h4>

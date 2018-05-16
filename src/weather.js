@@ -59,7 +59,7 @@ class Weather extends React.Component {
 
     render() {
         return(
-            <div>
+            <div className="weather">
                 <input
                     type="text"
                     value={this.state.value}

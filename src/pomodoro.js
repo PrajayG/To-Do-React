@@ -85,9 +85,9 @@ class Pomodoro extends React.Component {
           </div>
           <div className="row">
             <div className="column column-50">
-              <button onClick={() => this.startTimer()}> <i className="fas fa-play"></i> </button> 
-              <button onClick={() => this.stopTimer()}> <i className="fas fa-stop"> </i></button>
-              <button onClick={() => this.pauseTimer()}> <i className="fas fa-pause"></i> </button>
+              <button className="timer-button" onClick={() => this.startTimer()}> <i className="fas fa-play"></i> </button> 
+              <button className="timer-button" onClick={() => this.stopTimer()}> <i className="fas fa-stop"> </i></button>
+              <button className="timer-button" onClick={() => this.pauseTimer()}> <i className="fas fa-pause"></i> </button>
             </div>
           </div>
             {/* Note that the above is passed as a function, this ensures that it doesn't 

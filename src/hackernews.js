@@ -46,7 +46,7 @@ s
     render() {
         return (
 
-        <table>
+        <table className="hacker-news">
             <thead>
                 <tr>
                     <th>Title</th>
